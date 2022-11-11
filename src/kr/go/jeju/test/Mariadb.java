@@ -1,4 +1,4 @@
-package kr.go.jeju.test;
+/*package kr.go.j.test;
 
 import static org.junit.Assert.*;
 
@@ -43,3 +43,4 @@ public class MariaDBTest {
 		}
 	}	
 }
+*/

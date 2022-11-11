@@ -11,6 +11,6 @@ CREATE TABLE notice(
 
 	desc notice;
 	
-	INSERT INTO notice(title,content) VALUES ("테스트글1", "테스트글1");
+	insert into notice(title,content) VALUESnoticegoverment ("테스트글1", "테스트글1");
 	
 	COMMIT;

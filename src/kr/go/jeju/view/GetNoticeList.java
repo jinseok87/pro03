@@ -1,4 +1,4 @@
-package kr.go.jeju.view;
+/*package kr.go.jeju.view;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,3 +35,4 @@ public class GetNoticeList extends HttpServlet {
 	}
 
 }
+*/
