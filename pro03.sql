@@ -1,6 +1,3 @@
-
-
-
 CREATE TABLE notice(
 	NO INT PRIMARY KEY AUTO_INCREMENT,
 	title VARCHAR(200),
@@ -9,8 +6,12 @@ CREATE TABLE notice(
 	visited INT DEFAULT 0
 	);
 
-	desc notice;
 	
-	insert into notice(title,content) VALUESnoticegoverment ("테스트글1", "테스트글1");
-	
-	COMMIT;
+DESC notice;
+
+INSERT INTO notice(title, content) VALUES ("테스트1", "테스트1내용");
+
+
+SELECT * FROM notice;
+
+COMMIT;

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import kr.go.jeju.dto.NoticeDTO;
 import kr.go.jeju.model.NoticeDAO;
 
-@WebServlet("/AddNoticeCtrl.do")
-public class AddNoticeCtrl extends HttpServlet {
+@WebServlet("/ModifyNoticeProCtrl.do")
+public class ModifyNoticeProCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,20 +20,22 @@ public class AddNoticeCtrl extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
+		int no = Integer.parseInt(request.getParameter("no"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 
 		NoticeDTO dto = new NoticeDTO();
+		dto.setNo(no);
 		dto.setTitle(title);
 		dto.setContent(content);
 
 		NoticeDAO dao = new NoticeDAO();
-		int cnt = dao.addNotice(dto);
+		int cnt = dao.modifyNotice(dto);
 
 		if (cnt >= 1) {
 			response.sendRedirect("GetNoticeListCtrl.do");
 		} else {
-			response.sendRedirect("./notice/addNotice.jsp");
+			response.sendRedirect("ModifyNoticeCtrl?no=" + no);
 		}
 	}
 }
