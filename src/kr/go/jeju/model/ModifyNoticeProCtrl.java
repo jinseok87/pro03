@@ -1,4 +1,4 @@
-package kr.go.jeju.controller;
+package kr.go.jeju.model;
 
 import java.io.IOException;
 
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.go.jeju.dto.NoticeDTO;
-import kr.go.jeju.model.NoticeDAO;
 
 @WebServlet("/ModifyNoticeProCtrl.do")
 public class ModifyNoticeProCtrl extends HttpServlet {
