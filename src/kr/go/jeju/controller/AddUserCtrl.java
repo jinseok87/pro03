@@ -47,8 +47,12 @@ public class AddUserCtrl extends HttpServlet {
 			e.printStackTrace();
 		}
 
+<<<<<<< HEAD
 		//이미 있는 아이디
 		if (cnt >= 1) { 
+=======
+		if (cnt >= 1) { // 이미 있는 아이디임
+>>>>>>> bd9f635f01f685b8cb64d4ea97c580d27cd8a2e2
 			result = false;
 			response.sendRedirect("./user/signUp.jsp?qid=" + id);
 		} else { // 없는 아이디인 경우 회원 가입
