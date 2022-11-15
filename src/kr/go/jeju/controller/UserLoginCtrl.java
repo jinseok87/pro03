@@ -1,38 +1,43 @@
 package kr.go.jeju.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.go.jeju.model.UserDAO;
 
-import org.json.JSONObject;
-
-@WebServlet("/IdCheckCtrl.do")
-public class IdCheckCtrl extends HttpServlet {
+@WebServlet("/UserLoginCtrl.do")
+public class UserLoginCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+
 		String id = request.getParameter("id");
-		boolean result = false;
-		int cnt = 0;
+		String pw = request.getParameter("pw");
+		String msg = "";
 		UserDAO dao = new UserDAO();
-		cnt = dao.idCheckPro(id);
-		if(cnt>=1){	
-			result = false;
+		int cnt = dao.userLogin(id, pw);
+		HttpSession session = request.getSession();
+		if (cnt == 1) {
+			msg = "로그인 성공";
+			session.setAttribute("sid", id);
+			response.sendRedirect(request.getContextPath());
+		} else if (cnt == 9) {
+			msg = "아이디 또는 비밀번호가 틀립니다.";
+			response.sendRedirect("./user/login.jsp?msg=" + msg);
+
 		} else {
-			result = true;
+			msg = "존재하지 않는 아이디 입니다.";
+			response.sendRedirect("./user/login.jsp?msg=" + msg);
 		}
-		JSONObject json = new JSONObject();
-		json.put("result", result);
-		PrintWriter out = response.getWriter();
-		out.println(json.toString());
 	}
+
 }

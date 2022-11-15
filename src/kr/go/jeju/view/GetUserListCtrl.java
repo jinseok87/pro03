@@ -1,6 +1,7 @@
 package kr.go.jeju.view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,22 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.go.jeju.dto.NoticeDTO;
-import kr.go.jeju.model.NoticeDAO;
+import kr.go.jeju.dto.UserDTO;
+import kr.go.jeju.model.UserDAO;
 
-@WebServlet("/GetNoticeCtrl.do")
-public class GetNoticeCtrl extends HttpServlet {
+@WebServlet("/GetUserListCtrl.do")
+public class GetUserListCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("no"));
-
-		NoticeDAO dao = new NoticeDAO();
-		NoticeDTO dto = dao.getNotice(no);
-
-		request.setAttribute("dto", dto);
-
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/notice/noticeDetail.jsp");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		UserDAO dao = new UserDAO();
+		ArrayList<UserDTO> userList = dao.getUserList();
+		
+		request.setAttribute("list", userList);
+		
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/user/userList.jsp");
 		view.forward(request, response);
 	}
 }

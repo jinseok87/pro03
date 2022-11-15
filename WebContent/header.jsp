@@ -3,7 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.util.*, java.lang.*"%>
 <%@ page import="java.text.*, java.net.InetAddress"%>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 <c:set var="path2" value="${pageContext.request.contextPath }" />
+<div class = "nav_wrap">
+
 <nav class="navbar" role="navigation" aria-label="main navigation">
 	<div class="navbar-brand">
 		<a class="navbar-item" id="logo" href="<%=request.getContextPath()%>/"> </a>
@@ -17,7 +20,7 @@
 	<div id="navbarBasicExample" class="navbar-menu">
 		<div class="navbar-start">
 
-			<a class="navbar-item" href="<%=request.getContextPath()%>/GetNoticeListCtrl.do"> Documentation </a>
+			<a class="navbar-item" href="<%=request.getContextPath()%>/GetNoticeListCtrl.do"> Notice </a>
 
 			<div class="navbar-item has-dropdown is-hoverable">
 				<a class="navbar-link"> More </a>
@@ -35,12 +38,11 @@
 		<div class="navbar-end">
 			<div class="navbar-item">
 				<div class="buttons">
-					<a class="button is-primary">
-						<strong>Sign up</strong>
-					</a>
-					<a class="button is-light"> Log in </a>
+					<a class="button is-light" href="${path2 }/user/login.jsp"> 로그인 </a>
+					<a class="button is-light"> 회원가입 </a>
 				</div>
 			</div>
 		</div>
 	</div>
 </nav>
+</div>

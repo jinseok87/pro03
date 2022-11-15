@@ -30,7 +30,11 @@
 							<td><input type="text" class="input" name = "pw" id = "pw"></td>
 						</tr>
 						<tr>
-							<th>비밀번호</th>
+							<th>전화번호</th>
+							<td><input type="tel" class="input" name = "tel" id = "tel"></td>
+						</tr>
+						<tr>
+							<th>주소</th>
 							<td><input type="text" class="input" name = "pw" id = "pw"></td>
 						</tr>
 					</tbody>

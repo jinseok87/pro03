@@ -13,11 +13,12 @@ import com.crypto.util.AES256;
 import kr.go.jeju.dto.UserDTO;
 import kr.go.jeju.model.UserDAO;
 
-@WebServlet("/AddUserCtrl.do")
-public class AddUserCtrl extends HttpServlet {
+@WebServlet("/UserUploadCtrl.do")
+public class UserUploadCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -27,45 +28,40 @@ public class AddUserCtrl extends HttpServlet {
 		String name = request.getParameter("name");
 		String addr1 = request.getParameter("address1");
 		String addr2 = request.getParameter("address2");
+		String addr = request.getParameter("addr");
+		if (addr1 != null) {
+			addr = addr1 + "<br>" + addr2;
+		}
 		String email = request.getParameter("email");
 		String tel = request.getParameter("tel");
 		String birth = request.getParameter("birth");
 
 		boolean result = false;
-		System.out.println("입력된 아이디 : " + id);
-		int cnt = 0, suc = 0;
-		UserDAO dao = new UserDAO();
-		cnt = dao.idCheckPro(id);
 
+		int con = 0, suc = 0;
+		UserDAO dao = new UserDAO();
 		UserDTO user = new UserDTO();
-		String key = "%02x";
+		String key = "02x";
 		String encrypted = "";
 		try {
 			encrypted = AES256.encryptAES256(pw, key);
-			System.out.println("비밀번호 암호화 : " + encrypted);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		//이미 있는 아이디
-		if (cnt >= 1) { 
-			result = false;
-			response.sendRedirect("./user/signUp.jsp?qid=" + id);
-		} else { // 없는 아이디인 경우 회원 가입
-			result = true;
-			user.setId(id);
-			user.setPw(encrypted);
-			user.setName(name);
-			user.setAddr(addr1 + "<br>" + addr2);
-			user.setTel(tel);
-			user.setEmail(email);
-			user.setBirth(birth);
-			suc = dao.addUser(user);
-			if (suc >= 1) {
-				response.sendRedirect(request.getContextPath());
-			} else {
-				response.sendRedirect("./user/signUp.jsp?qid=" + id);
-			}
+		user.setId(id);
+		user.setPw(encrypted);
+		user.setName(name);
+		user.setAddr(addr);
+		user.setTel(tel);
+		user.setEmail(email);
+		user.setBirth(birth);
+		suc = dao.updateUser(user);
+
+		if (suc >= 1) {
+			response.sendRedirect("/");
+		} else {
+			response.sendRedirect("UserInfoCtrl");
 		}
 	}
 }
