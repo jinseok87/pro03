@@ -1,45 +1,60 @@
---테이블 생성
---게시판테이블
+USE goverment;
+
 CREATE TABLE notice(
-	NO INT PRIMARY KEY AUTO_INCREMENT,
+	no INT PRIMARY KEY AUTO_INCREMENT,
 	title VARCHAR(200),
-	content VARCHAR(1500),
+	content VARCHAR(1000),
 	regdate DATETIME DEFAULT NOW(),
 	visited INT DEFAULT 0
-	);
-
---회원테이블
-create table user(
-	id varchar(50) primary key,
-    pw varchar(200) not null,
-    name varchar(50) not null,
-    point int default 0,
-    grade varchar(4) default "f",
-    visited int default 1,
-    tel varchar(11),
-    addr varchar(150),
-    email varchar(100),
-    birth date,
-    regdate datetime default now()
 );
-
-
---user 데이터
-insert into user(id, pw, name, tel, addr, email) values ("jin","1234","진석","01011112222","김포","a123@naver.com");
---게시판 데이터
-INSERT INTO notice(title, content) VALUES ("테스트1", "테스트1내용");
-
---테이블 조회
-select *from user;
-SELECT * FROM notice;
-
-
---테이블 삭제
-drop table user;
-
 
 DESC notice;
 
-
+INSERT INTO notice(title, content) VALUES ("테스트 글1", "테스트 글2 내용입니다.");
 
 COMMIT;
+
+SELECT * FROM notice;
+
+CREATE TABLE USER(
+	id VARCHAR(30) PRIMARY KEY,
+	pw VARCHAR(300) NOT NULL,
+	NAME VARCHAR(50) NOT NULL,
+	POINT INT DEFAULT 0,
+	grade VARCHAR(4) DEFAULT "F",
+	visted INT DEFAULT 1,
+	tel VARCHAR(11),
+	addr VARCHAR(150),
+	email VARCHAR(100),
+	birth DATE,
+	regdate DATETIME DEFAULT NOW()
+);
+
+DROP TABLE USER;
+DESC user;
+
+SELECT * FROM USER;
+UPDATE user SET grade="A" WHERE id="admin";
+COMMIT;
+
+CREATE TABLE pic(
+	no INT PRIMARY KEY AUTO_INCREMENT,
+	tourno VARCHAR(20),
+	picname VARCHAR(150)
+);
+ALTER TABLE pic ADD COLUMN pos INT default 1; 
+DESC pic;
+SELECT * FROM pic;
+DELETE FROM pic;
+
+COMMIT;
+CREATE TABLE tour(
+	no INT PRIMARY KEY AUTO_INCREMENT,
+	tourno VARCHAR(20),	-- 카테고리 타입 - 마지막 레코드의 no+1
+	cate VARCHAR(20),
+	place VARCHAR(100),
+	comment1 VARCHAR(1000),
+	comment2 VARCHAR(1000)  
+);
+DESC tour;
+SELECT * FROM tour;

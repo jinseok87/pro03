@@ -12,13 +12,12 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/UserLogoutCtrl.do")
 public class UserLogoutCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session!=null) {
+		if(session!=null){
 			session.invalidate();
 		}
 		response.sendRedirect(request.getContextPath());
 	}
-
 }

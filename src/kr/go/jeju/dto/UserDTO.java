@@ -6,7 +6,7 @@ public class UserDTO {
 	private String name;
 	private int point;
 	private String grade;
-	private int visited;
+	private int visted;
 	private String tel;
 	private String addr;
 	private String email;
@@ -34,7 +34,7 @@ public class UserDTO {
 		return point;
 	}
 	public void setPoint(int point) {
-		this.point = point;
+		point = point;
 	}
 	public String getGrade() {
 		return grade;
@@ -42,11 +42,11 @@ public class UserDTO {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public int getVisited() {
-		return visited;
+	public int getVisted() {
+		return visted;
 	}
-	public void setVisited(int visited) {
-		this.visited = visited;
+	public void setVisted(int visted) {
+		this.visted = visted;
 	}
 	public String getTel() {
 		return tel;

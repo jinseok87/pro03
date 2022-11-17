@@ -19,6 +19,7 @@ public class UserLoginCtrl extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		// id, pw
 
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -33,11 +34,11 @@ public class UserLoginCtrl extends HttpServlet {
 		} else if (cnt == 9) {
 			msg = "아이디 또는 비밀번호가 틀립니다.";
 			response.sendRedirect("./user/login.jsp?msg=" + msg);
-
 		} else {
 			msg = "존재하지 않는 아이디 입니다.";
 			response.sendRedirect("./user/login.jsp?msg=" + msg);
 		}
+
 	}
 
 }
