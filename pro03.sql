@@ -58,3 +58,13 @@ CREATE TABLE tour(
 );
 DESC tour;
 SELECT * FROM tour;
+
+create table review(
+	no INT PRIMARY KEY AUTO_INCREMENT,
+	title VARCHAR(200),
+	content VARCHAR(1000),
+	regdate DATETIME DEFAULT NOW(),
+	visited INT DEFAULT 0
+);
+select * from review;
+drop table review;

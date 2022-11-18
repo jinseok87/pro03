@@ -13,7 +13,7 @@ public class TourDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
-	public int loadLastNo(){	//중복 아이디 체크 / 회원가입시 가입전 체크
+	public int loadLastNo(){	
 		int no = 0;
 		try {
 			con = Maria.getConnection();

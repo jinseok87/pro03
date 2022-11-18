@@ -39,6 +39,18 @@ public class Maria {
 	public final static String TEST_SELECT_ONE = "select * from test where name=?";
 	public final static String TEST_SELECT_ALL = "select * from test";
 
+	final static String TOUR_SEARCH_PLACE_LIST = "select * from tour where place like CONCAT('%',?,'%')"; //'%'+?+'%'
+	final static String TOUR_SEARCH_COMMENT_LIST = "select * from tour where comment2 like ?";
+	final static String TOUR_SEARCH_ALL_LIST = "select * from tour where place like ? or comment2 like ?";
+	
+	final static String REVIEW_LIST_ALL = "select * from tour";
+	final static String REVIEW_SELECT_ALL = "select * from review order by regdate desc";
+	final static String REVIEW_VISITED_UPDATE = "update review set visited = visited + 1 where no=?";
+	final static String REVIEW_SELECT_ONE = "select * from review where no=?";
+	final static String REVIEW_INSERT = "insert into review(title, content) values (?, ?)";
+	final static String REVIEW_DELEDTE = "delete from review where no=?";
+	final static String REVIEW_UPDATE = "update review set title=?, content=? where no=?";
+	final static String ADD_REVIEW = "insert into review(no, title, content, regdate) values (?,?,?,?)";
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName(DRIVER);
